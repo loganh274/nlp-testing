@@ -1,0 +1,61 @@
+ID,Sentiment_Score,Category,Status_Context,User_Comment
+1,Negative,Invoicing,Released,The new invoice layout is confusing and my clients are complaining they can't find the payment link.
+2,Very Negative,Mobile App,General,"The app crashes every single time I try to scan a receipt, it's completely unusable right now."
+3,Negative,Reporting,New Idea,Why is there still no option to run a consolidated report across multiple entities? This is basic functionality.
+4,Negative,UI/UX,Released,"The recent UI update introduced way too much white space, I have to scroll twice as much to see the same data."
+5,Very Negative,Payroll,In Progress,"I've been waiting 6 months for the payroll tax fix, this delay is unacceptable and costing me penalties."
+6,Negative,Bank Feeds,General,My bank feed for Chase has been disconnected for three days and support hasn't replied to my ticket.
+7,Negative,Integrations,New Idea,"The Shopify integration is broken, inventory numbers aren't syncing and I'm overselling stock."
+8,Negative,Reconciliation,Released,"The 'smart' matching rule is matching transactions to the wrong vendors, creating more work for me."
+9,Very Negative,Support,General,"I waited on hold for 45 minutes only to be told to 'clear my cache', terrible customer service."
+10,Negative,Invoicing,Under Review,"We need the ability to edit invoices after they are sent without voiding them, the current process is too rigid."
+11,Negative,Reporting,General,"The cash flow forecast is wildly inaccurate, it doesn't account for recurring bills correctly."
+12,Negative,API,New Idea,"Documentation for the new API endpoints is sparse and full of errors, developers can't work with this."
+13,Very Negative,UI/UX,Released,"Please revert the dashboard changes, the font is too small and the contrast is terrible for accessibility."
+14,Negative,Expenses,In Progress,"Auto-categorization is failing for 50% of my expenses, I'm spending hours fixing it manually."
+15,Negative,Mobile App,New Idea,"Still no landscape mode for iPad? It's 2024, come on."
+16,Negative,Payroll,Released,"The split payment feature is buggy, it deducted the wrong amount from two employees' checks."
+17,Very Negative,Pricing,General,Another price hike? The software hasn't improved enough to justify a 20% increase.
+18,Negative,General,Under Review,"Transparency on the roadmap is non-existent, we have no idea when critical bugs will be fixed."
+19,Negative,Reconciliation,New Idea,Why can't we attach documents to transfer transactions yet? This is a compliance nightmare.
+20,Negative,Invoicing,In Progress,The bulk send feature is timing out for batches larger than 50 invoices.
+21,Negative,Security,General,"Forcing a password reset every 30 days is annoying and doesn't actually improve security, please implement standard 2FA."
+22,Very Negative,Integrations,Released,"The CRM sync wiped out my contact notes, I need a backup restored immediately."
+23,Negative,Tax,New Idea,"The sales tax calculation for digital goods in the EU is incorrect, please fix this ASAP."
+24,Negative,UI/UX,General,"The sidebar menu is too cluttered, I can't find the settings page half the time."
+25,Negative,Mobile App,Released,"Estimates sent from the phone app are missing the company logo, it looks unprofessional."
+26,Very Negative,Reporting,New Idea,"Reporting speed is abysmal, it takes 5 minutes to generate a simple P&L."
+27,Negative,Payroll,Under Review,"We need custom leave types, the default options don't cover our industry requirements."
+28,Negative,Reconciliation,General,"The 'undo' button is missing from the new reconciliation screen, one mistake means starting over."
+29,Negative,General,Released,"Since the last update, the system logs me out every 10 minutes, it's disrupting my workflow."
+30,Negative,Invoicing,New Idea,Crypto payments are nice but can we please just get Stripe payments to work reliably first?
+31,Very Negative,Support,General,The chatbot is useless and I can never reach a human agent when I have a critical issue.
+32,Negative,Expenses,Released,"Mileage tracker is draining my battery and missing trips, I've had to switch to a spreadsheet."
+33,Negative,API,Under Review,"Webhooks are firing twice for the same event, causing duplicate entries in our database."
+34,Negative,UI/UX,New Idea,"Allow us to hide modules we don't pay for, I'm tired of seeing 'Upgrade' buttons everywhere."
+35,Negative,Reporting,In Progress,"The export to Excel formats numbers as text, making the spreadsheet useless for calculation."
+36,Very Negative,Mobile App,General,"The Android widget hasn't updated in weeks, it's showing a balance from last month."
+37,Negative,Payroll,New Idea,"Contractor onboarding is too manual, we need a self-service portal urgently."
+38,Negative,General,General,"Performance has degraded significantly over the last few months, pages take forever to load."
+39,Negative,Reconciliation,Released,Bank rules are being ignored since the patch on Tuesday.
+40,Negative,Integrations,Under Review,"Slack notifications are spammy, we need granular control over what gets posted."
+41,Very Negative,Tax,Released,The automated sales tax filing missed a deadline and now I have to pay a fine.
+42,Negative,Invoicing,New Idea,Still no multi-language support? I'm losing international clients because of this.
+43,Negative,UI/UX,General,"The grey-on-grey text is impossible to read, please consider users with visual impairments."
+44,Negative,Reporting,New Idea,"Drill-down functionality is broken on the balance sheet, it just spins and times out."
+45,Negative,Mobile App,Released,"FaceID login fails 50% of the time, I have to type my password constantly."
+46,Very Negative,Data,General,I lost three hours of data entry because the session timed out without a warning saving.
+47,Negative,Expenses,In Progress,"OCR is misreading '8' as '0' consistently, I can't trust the automation."
+48,Negative,Payroll,New Idea,Why can't I customize the pay stub layout? My employees are confused by the current format.
+49,Negative,Reconciliation,General,"Bulk un-reconcile is dangerous without a confirmation step, I accidentally undid a whole month."
+50,Negative,Integrations,New Idea,"Asana integration is one-way only, it doesn't push time entries back to the accounting software."
+51,Very Negative,General,General,"I'm actively looking for alternatives, the lack of support for long-standing bugs is the final straw."
+52,Negative,Invoicing,In Progress,"We still can't attach files larger than 2MB to invoices, which is too small for our design blueprints."
+53,Negative,Reporting,Released,"The new dashboard graphs are pretty but lack data density, I need numbers not just colors."
+54,Negative,UI/UX,New Idea,"Keyboard shortcuts conflict with my browser defaults, let us remap them."
+55,Negative,Mobile App,Under Review,"Offline mode creates sync conflicts when I reconnect, it corrupted two invoices."
+56,Negative,Payroll,General,"Employee self-service portal is down again, they can't access their W2s."
+57,Very Negative,Reconciliation,Released,"Bank feed duplicates are back, I have to manually delete hundreds of lines."
+58,Negative,Tax,In Progress,The VAT return report doesn't support the new flat rate scheme yet.
+59,Negative,Integrations,New Idea,"Zapier connection disconnects every 24 hours, it's not reliable for automation."
+60,Negative,General,New Idea,Stop pushing 'new features' and fix the core stability issues first!

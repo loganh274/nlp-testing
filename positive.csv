@@ -1,0 +1,61 @@
+ID,Sentiment_Score,Category,Status_Context,User_Comment
+1,Positive,Invoicing,New Idea,This idea for automated recurring invoices based on project milestones is brilliant!
+2,Very Positive,Mobile App,Released,"Just downloaded the new mobile update and the receipt scanning is lightning fast now, thank you!"
+3,Positive,Reporting,In Progress,So happy to see the custom P&L comparison view is finally in development.
+4,Positive,UI/UX,New Idea,Dark mode would be a fantastic addition for those of us working late nights during tax season.
+5,Very Positive,Payroll,Released,The new one-click payroll filing feature has literally saved me hours every week.
+6,Positive,Bank Feeds,Under Review,"Great suggestion to add support for the new challenger banks, would love to see this happen."
+7,Positive,Integrations,New Idea,An integration with Shopify for real-time inventory syncing would be a game changer for my business.
+8,Positive,Reconciliation,In Progress,"Really appreciate the team picking up this request so quickly, looking forward to the beta."
+9,Very Positive,General,General,I just want to say this community is so helpful and the support team is doing a great job listening to us.
+10,Positive,Invoicing,Released,The ability to customize invoice hex codes to match our brand perfectly is a small but wonderful touch.
+11,Positive,Reporting,New Idea,"I completely agree with the OP, a cash flow forecast widget on the dashboard would be incredibly useful."
+12,Positive,API,Under Review,Excited that you are considering opening up the API for time-tracking apps.
+13,Very Positive,UI/UX,Released,"The dashboard redesign looks clean and modern, makes navigating so much more enjoyable."
+14,Positive,Expenses,New Idea,"Love the idea of auto-categorizing expenses based on vendor history, +1 from me!"
+15,Positive,Mobile App,In Progress,Glad to hear iPad landscape support is coming soon!
+16,Positive,Payroll,Released,Finally! The ability to handle split payments for employees is exactly what we needed.
+17,Very Positive,Reporting,New Idea,This is the best suggestion I've seen all month; multi-currency consolidation is a must-have.
+18,Positive,General,General,Kudos to the product team for being so transparent with the roadmap recently.
+19,Positive,Reconciliation,Released,"The AI matching for transactions has improved significantly in this latest patch, well done."
+20,Positive,Invoicing,Under Review,"Fingers crossed this gets approved, bulk editing invoice due dates would be amazing."
+21,Positive,Security,New Idea,2FA via authenticator app instead of just SMS is a great security proposal.
+22,Very Positive,Integrations,Released,"The new CRM integration is working seamlessly, data flow is perfect."
+23,Positive,Tax,In Progress,Thank you for prioritizing the new tax rate updates before the fiscal year end.
+24,Positive,UI/UX,New Idea,"I'd love a 'compact view' for lists to see more rows on screen, great idea."
+25,Positive,Mobile App,Released,Being able to send estimates directly from the phone app has helped me close deals on site!
+26,Very Positive,Reporting,General,"I've used Xero and QB before, but the reporting flexibility here is becoming superior."
+27,Positive,Payroll,New Idea,Automated leave calculation based on hours worked would be a super helpful feature.
+28,Positive,Reconciliation,In Progress,Can't wait to try out the new rule creation wizard you mentioned in the dev log.
+29,Positive,General,Released,"The speed improvements in the legacy reports are very noticeable, thank you."
+30,Positive,Invoicing,New Idea,Adding a 'Pay Now' button for crypto payments is a forward-thinking suggestion.
+31,Very Positive,Support,General,"Shout out to the support team for clarifying how to use the new tags feature, works like a charm."
+32,Positive,Expenses,Released,"The mileage tracker update is spot on, much more accurate now."
+33,Positive,API,In Progress,Good to see the webhooks for invoice status changes are being built.
+34,Positive,UI/UX,New Idea,A customizable sidebar menu would be great so I can hide modules I don't use.
+35,Positive,Reporting,Released,Exporting reports to Google Sheets directly is a huge workflow improvement for us.
+36,Very Positive,Mobile App,New Idea,Please build a widget for Android home screens to show current bank balance!
+37,Positive,Payroll,Under Review,Good to know the team is looking into contractor self-onboarding.
+38,Positive,General,General,"Loving the direction this software is heading, keep up the good work."
+39,Positive,Reconciliation,New Idea,Ability to attach documents to bank transfer transactions would be very tidy.
+40,Positive,Integrations,In Progress,Integration with Slack for notifications is going to be super useful.
+41,Very Positive,Tax,Released,The sales tax automation for US states handles the new nexus laws perfectly.
+42,Positive,Invoicing,New Idea,I second the request for multi-language invoice templates for our overseas clients.
+43,Positive,UI/UX,Released,"The new font is much easier to read on smaller screens, nice choice."
+44,Positive,Reporting,Under Review,"Hoping this drill-down feature gets the green light, it would make audits easier."
+45,Positive,Mobile App,New Idea,Biometric login for the desktop app via mobile auth would be cool.
+46,Very Positive,General,Released,"The migration tool worked flawlessly, moved 5 years of data without a hitch."
+47,Positive,Expenses,In Progress,Excellent news that OCR for handwritten receipts is being improved.
+48,Positive,Payroll,New Idea,A visual org chart generated from payroll data would be a fun little addition.
+49,Positive,Reconciliation,Released,Being able to 'un-reconcile' in bulk has saved me from a massive headache today.
+50,Positive,Integrations,New Idea,Connecting to project management tools like Asana for billable hours would be ideal.
+51,Very Positive,General,General,"This forum is such a great resource, thanks everyone for the helpful tips."
+52,Positive,Invoicing,In Progress,Awesome that you are adding the ability to attach large PDF files to invoices soon.
+53,Positive,Reporting,New Idea,Visual graphs for expense trends over time would be a nice dashboard upgrade.
+54,Positive,UI/UX,Released,"The new keyboard shortcuts are very intuitive, speeding up my data entry."
+55,Positive,Mobile App,Under Review,"Glad you are considering offline mode for the app, essential for rural work."
+56,Positive,Payroll,New Idea,Allowing employees to update their own address details would reduce admin work nicely.
+57,Very Positive,Reconciliation,Released,"The bank feed stability has been rock solid lately, no more disconnections!"
+58,Positive,Tax,In Progress,"Thanks for the update on the VAT return filing, looks like it will be ready in time."
+59,Positive,Integrations,New Idea,Zapier triggers for new contacts would be very powerful.
+60,Positive,General,New Idea,A 'Sandbox' mode to test features without affecting live data would be incredible.
