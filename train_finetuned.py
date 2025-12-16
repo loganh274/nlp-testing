@@ -6,10 +6,12 @@ from sklearn.metrics import classification_report, confusion_matrix, ConfusionMa
 from collections import Counter
 import matplotlib.pyplot as plt
 import torch
+import os
 
 # Configuration
 USE_3_CLASSES = False
 MODEL_NAME = "distilbert-base-uncased"
+STAGE1_MODEL_DIR = "./models/stage1_domain_adapted"
 
 # Load augmented data
 df = pd.read_csv('xpi_labeled_data_augmented.csv')
@@ -41,9 +43,18 @@ dataset = dataset.cast_column('label', ClassLabel(names=LABEL_NAMES))
 dataset = dataset.train_test_split(test_size=0.2, seed=42, stratify_by_column='label')
 
 # Load tokenizer and model
-print(f"\nLoading {MODEL_NAME}...")
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=NUM_LABELS)
+# Try to load from Stage 1 model, fall back to base model if not available
+if os.path.exists(STAGE1_MODEL_DIR):
+    print(f"\nLoading Stage 1 pre-trained model from {STAGE1_MODEL_DIR}...")
+    tokenizer = AutoTokenizer.from_pretrained(STAGE1_MODEL_DIR)
+    model = AutoModelForSequenceClassification.from_pretrained(STAGE1_MODEL_DIR, num_labels=NUM_LABELS)
+    print("✓ Successfully loaded Stage 1 model!")
+else:
+    print(f"\nStage 1 model not found at {STAGE1_MODEL_DIR}")
+    print(f"Falling back to base model: {MODEL_NAME}")
+    print("Note: Run train_stage1_composite.py first for better results")
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=NUM_LABELS)
 
 def tokenize(batch):
     return tokenizer(batch['text'], padding=True, truncation=True, max_length=256)
