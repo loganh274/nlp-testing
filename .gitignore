@@ -33,4 +33,4 @@ Thumbs.db
 # *.csv
 
 # HuggingFace cache
-.cache/
+.cache/state1_model
