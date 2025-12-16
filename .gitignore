@@ -9,12 +9,19 @@ __pycache__/
 *$py.class
 *.so
 
+
 # Model outputs and checkpoints
 results/
 logs/
 *.pt
 *.pth
 xpi_sentiment_model/
+data/
+models/
+confusion_matrix.png
+stage1_training_loss.png
+xpi_confusion_matrix.png
+confusion_matrix_finetuned.png
 
 # Jupyter notebooks
 .ipynb_checkpoints/
