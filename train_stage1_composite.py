@@ -9,7 +9,7 @@ import os
 INPUT_DIR = "./data/composite_dataset"
 OUTPUT_DIR = "./models/stage1_domain_adapted"
 LOSS_GRAPH_FILE = "stage1_training_loss.png"
-MODEL_NAME = "distilbert-base-uncased"
+MODEL_NAME = "microsoft/deberta-v3-small"
 NUM_LABELS = 5
 
 def compute_metrics(eval_pred):
@@ -51,6 +51,7 @@ def main():
         eval_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
+        fp16=True,
         learning_rate=2e-5,
         weight_decay=0.01,
         logging_steps=50, # Log frequently for the graph

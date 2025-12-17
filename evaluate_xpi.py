@@ -1,82 +1,82 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer
-from datasets import Dataset, ClassLabel
 import pandas as pd
-import numpy as np
-from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import torch
+from transformers import pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
-import os
+import seaborn as sns
+from tqdm.auto import tqdm
+import argparse
 
-# Configuration
-MODEL_PATH = "./xpi_sentiment_model"
-FALLBACK_MODEL_PATH = "./models/stage1_domain_adapted"
-TEST_DATA_FILE = 'xpi_labeled_data_augmented.csv'
-CM_FILE = "xpi_confusion_matrix.png"
+def evaluate(data_path, model_path, batch_size=32):
+    # 1. Device Management (Crucial for performance)
+    device = 0 if torch.cuda.is_available() else -1
+    print(f"Using device: {'GPU' if device == 0 else 'CPU'}")
 
-# Labels
-NUM_LABELS = 5
-LABEL_NAMES = ["Very Negative", "Negative", "Neutral", "Positive", "Very Positive"]
-
-def main():
-    # 1. Load the Fine-tuned Model
-    print(f"Loading fine-tuned model from {MODEL_PATH}...")
-    try:
-        tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-        model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH, num_labels=NUM_LABELS)
-        print("✓ Successfully loaded fine-tuned model!")
-    except OSError:
-        print(f"Fine-tuned model not found at {MODEL_PATH}.")
-        print(f"Falling back to Stage 1 model at {FALLBACK_MODEL_PATH}...")
-        try:
-            tokenizer = AutoTokenizer.from_pretrained(FALLBACK_MODEL_PATH)
-            model = AutoModelForSequenceClassification.from_pretrained(FALLBACK_MODEL_PATH, num_labels=NUM_LABELS)
-            print("✓ Successfully loaded Stage 1 model!")
-        except OSError:
-            print(f"CRITICAL ERROR: Could not find model at {FALLBACK_MODEL_PATH}.")
-            print("Please run 'train_stage1_composite.py' first, then 'train_finetuned.py'.")
-            return
-
-    # 2. Load XPI Data
-    print(f"Loading test data from {TEST_DATA_FILE}...")
-    if not os.path.exists(TEST_DATA_FILE):
-        print(f"Error: File {TEST_DATA_FILE} not found.")
-        return
-        
-    df = pd.read_csv(TEST_DATA_FILE)
+    # 2. Data Loading & Split Replication
+    # CRITICAL: We must use the exact same random_state as training to separate the test set
+    df = pd.read_csv(data_path)
     
-    # Create Dataset (No split, use full file for testing)
-    dataset = Dataset.from_pandas(df[['text', 'label']])
-    dataset = dataset.cast_column('label', ClassLabel(names=LABEL_NAMES))
+    # Check if we have enough data to split
+    if len(df) < 5:
+        raise ValueError("Dataset too small to split.")
 
-    # Tokenize
-    def tokenize(batch):
-        return tokenizer(batch['text'], padding=True, truncation=True, max_length=256)
-
-    print("Tokenizing test data...")
-    dataset = dataset.map(tokenize, batched=True)
-
-    # 3. Predict (Inference Only)
-    print("Running predictions on XPI dataset...")
-    trainer = Trainer(model=model)
-    preds = trainer.predict(dataset)
+    _, X_test, _, y_test = train_test_split(
+        df['text'].tolist(), 
+        df['label'].tolist(), 
+        test_size=0.2, 
+        random_state=42 # Must match train_finetuned.py
+    )
     
-    pred_labels = np.argmax(preds.predictions, axis=-1)
-    true_labels = preds.label_ids
+    print(f"Evaluating on {len(X_test)} unseen test samples.")
 
-    # 4. Evaluation Metrics
-    print("\n" + "="*60)
-    print("FINAL EVALUATION: XPI Dataset (Fine-tuned Model)")
-    print("="*60)
-    print(classification_report(true_labels, pred_labels, target_names=LABEL_NAMES, zero_division=0))
+    # 3. Pipeline Initialization
+    # We load the tokenizer from the same path to ensure vocab consistency
+    classifier = pipeline(
+        "text-classification", 
+        model=model_path, 
+        tokenizer=model_path,
+        device=device
+    )
 
-    # 5. Confusion Matrix
-    cm = confusion_matrix(true_labels, pred_labels)
-    fig, ax = plt.subplots(figsize=(8, 6))
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=LABEL_NAMES)
-    disp.plot(ax=ax, cmap='Blues', xticks_rotation=45)
-    plt.title('Confusion Matrix - XPI Test Set (Fine-tuned Model)')
-    plt.tight_layout()
-    plt.savefig(CM_FILE)
-    print(f"Confusion matrix saved to {CM_FILE}")
+    # 4. Batched Inference
+    # The pipeline handles tokenization and batching internally here
+    predictions = []
+    print("Running inference...")
+    for output in tqdm(classifier(X_test, batch_size=batch_size, truncation=True), total=len(X_test)):
+        predictions.append(output['label'])
+
+    # 5. Label Alignment
+    # The pipeline returns strings (e.g., "positive"), but y_test might be ints (0, 1, 2)
+    # We need to standardize. Assuming model config has id2label.
+    
+    # Get mapping from model config
+    id2label = classifier.model.config.id2label
+    label2id = classifier.model.config.label2id
+    
+    # Convert predictions to IDs for metric calculation
+    pred_ids = [label2id[p] for p in predictions]
+    
+    # 6. Metrics
+    print("\nClassification Report:")
+    print(classification_report(y_test, pred_ids, target_names=list(label2id.keys())))
+
+    # 7. Visualization
+    cm = confusion_matrix(y_test, pred_ids)
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+                xticklabels=list(label2id.keys()), 
+                yticklabels=list(label2id.keys()))
+    plt.xlabel('Predicted')
+    plt.ylabel('True')
+    plt.title('Confusion Matrix (Test Set Only)')
+    plt.savefig('confusion_matrix_test_set.png')
+    print("Confusion matrix saved to confusion_matrix_test_set.png")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data_path", type=str, default="xpi_labeled_data_augmented.csv")
+    parser.add_argument("--model_path", type=str, default="./xpi_sentiment_model")
+    args = parser.parse_args()
+    
+    evaluate(args.data_path, args.model_path)
