@@ -33,7 +33,7 @@ def main():
     
     # 2. Setup Model & Tokenizer
     print(f"Loading base model: {MODEL_NAME}")
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=False)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=NUM_LABELS)
 
     def tokenize(batch):
