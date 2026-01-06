@@ -9,7 +9,7 @@ import os
 INPUT_DIR = "./data/composite_dataset"
 OUTPUT_DIR = "./models/stage1_domain_adapted"
 LOSS_GRAPH_FILE = "stage1_training_loss.png"
-MODEL_NAME = "microsoft/deberta-v3-small"
+MODEL_NAME = "microsoft/deberta-v3-base"
 NUM_LABELS = 5
 
 def compute_metrics(eval_pred):
@@ -37,7 +37,7 @@ def main():
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=NUM_LABELS)
 
     def tokenize(batch):
-        return tokenizer(batch['text'], padding="max_length", truncation=True, max_length=128)
+        return tokenizer(batch['text'], padding="max_length", truncation=True, max_length=256)
 
     print("Tokenizing dataset...")
     tokenized_dataset = dataset.map(tokenize, batched=True)
@@ -45,15 +45,15 @@ def main():
     # 3. Training Arguments
     training_args = TrainingArguments(
         output_dir=OUTPUT_DIR,
-        num_train_epochs=3,
+        num_train_epochs=5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         eval_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
-        fp16=True,
-        learning_rate=2e-5,
-        weight_decay=0.01,
+        fp16=False,
+        learning_rate=1e-5,
+        weight_decay=0.1,
         logging_steps=50, # Log frequently for the graph
         save_total_limit=2,
     )
